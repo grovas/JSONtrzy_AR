@@ -9,12 +9,15 @@ public class Person {
     private Object name;
     private Object username;
     private Object email;
-    private List<Address> addressList = new ArrayList<>();
+    private List<Object> addressList = new ArrayList<>();
     private Object phone;
     private Object website;
+    private List<Object> company = new ArrayList<>();
 
     public Person(Object id, Object name,
-                  Object username, Object email, List<Address> addressList, Object phone, Object website) {
+                  Object username, Object email,
+                  List<Object> addressList,
+                  Object phone, Object website, List<Object> company ) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -22,5 +25,6 @@ public class Person {
         this.addressList = addressList;
         this.phone = phone;
         this.website = website;
+        this.company = company;
     }
 }

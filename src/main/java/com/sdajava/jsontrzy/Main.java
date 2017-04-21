@@ -20,10 +20,10 @@ public class Main {
 
         JSONParser parser = new JSONParser();
 
-        List<Person> personList = new ArrayList<>();
-        List<Address> addressList = new ArrayList<>();
-        List<Geo> geoList = new ArrayList<>();
-        List<Company> companyList = new ArrayList<>();
+        List<Object> personList = new ArrayList<>();
+        List<Object> addressList = new ArrayList<>();
+        List<Object> geoList = new ArrayList<>();
+        List<Object> companyList = new ArrayList<>();
 
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/users");
@@ -31,51 +31,42 @@ public class Main {
             BufferedReader in =
                     new BufferedReader(new InputStreamReader(connect.getInputStream()));
 
-            String line;
-            /*String dateToString;
-            String[] substring;
-            String startDate = "2016-12-01";
-            String endDate = "2017-01-02";*/
-
-            while ((line = in.readLine()) != null) {
-                JSONArray array = (JSONArray) parser.parse(line);
+            //while ((line = in.readLine()) != null) {
+                JSONArray array = (JSONArray) parser.parse(in);
 
                 for (Object obj : array) {
 
                     JSONObject json = (JSONObject) obj;
 
-                    JSONObject jsonGeo = (JSONObject) obj;
-                    JSONArray results = (JSONArray) jsonGeo.get("geo");
-                    JSONObject resultLat = (JSONObject) results.get(0);
-                    JSONObject resultLng = (JSONObject) results.get(1);
+                    JSONObject resultA = (JSONObject) json.get("address");
+                    geoList.add(resultA.get("geo"));
 
-                    geoList.add(new Geo(resultLat.get("lat").toString(), resultLng.get("lng").toString()));
+                    addressList.add(
+                            new Address(resultA.get("street"),
+                                    resultA.get("suite"),
+                                    resultA.get("city"),
+                                    resultA.get("zipcode"),
+                                    geoList));
 
-                    JSONObject jsonAddress = (JSONObject) obj;
-                    JSONArray addressArray = (JSONArray) jsonGeo.get("address");
-                    JSONObject addressStreet = (JSONObject) addressArray.get(0);
-                    JSONObject addressSuite = (JSONObject) addressArray.get(1);
-                    JSONObject addressCity = (JSONObject) addressArray.get(2);
-                    JSONObject addressZip = (JSONObject) addressArray.get(3);
-                    JSONObject addressGeo = (JSONObject) addressArray.get(4);
+                    JSONObject resultC = (JSONObject) json.get("company");
+                    companyList.add(
+                            new Company(resultC.get("name"),
+                                    resultC.get("catchPhrase"),
+                                    resultC.get("bs")));
 
-
-                    addressList.add(new Address(json.get("street"),
-                            json.get("suite"),
-                            json.get("city"),
-                            json.get("zipcode"),
-                            geoList));
-
-                    companyList.add(new Company(json.get("company").))
-
-                    personList.add(new Person(json.get("id"),
+                    personList.add(
+                            new Person(json.get("id"),
                             json.get("name"),
                             json.get("username"),
                             json.get("email"),
                             addressList,
-                            ))
+                            json.get("phone"),
+                            json.get("website"),
+                            companyList));
+
+                    System.out.println("json");
                 }
-            }
+           // }
         } catch (ParseException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
