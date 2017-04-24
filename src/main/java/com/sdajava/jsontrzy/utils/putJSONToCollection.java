@@ -37,7 +37,6 @@ public class putJSONToCollection {
             //while ((line = in.readLine()) != null) {
             JSONArray array = (JSONArray) parser.parse(in);
 
-            int counter = 0;
             for (Object obj : array) {
 
                 JSONObject json = (JSONObject) obj;
@@ -69,12 +68,7 @@ public class putJSONToCollection {
                                 json.get("website"),
                                 (Company) companyList.get(companyList.size()-1)
                         ));
-                //System.out.println(personList);
-                counter++;
             }
-            //personList.stream().forEach(System.out::println);
-            //System.out.println(personList);
-            // }
         } catch (ParseException | IOException
                 // | MalformedURLException
                 e) {
