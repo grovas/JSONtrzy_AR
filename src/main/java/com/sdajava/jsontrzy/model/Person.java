@@ -2,18 +2,26 @@ package com.sdajava.jsontrzy.model;
 
 public class Person {
 
-    private Object id;
-    private Object name;
-    private Object username;
-    private Object email;
+    private long id;
+    private String name;
+    private String username;
+    private String email;
     private Address address;
-    private Object phone;
-    private Object website;
+    private String phone;
+    private String website;
     private Company company;
 
-    public Person(Object id, Object name, Object username, Object email,
-                  Address address, Object phone,
-                  Object website, Company company) {
+    public Person(Address address){
+        this.address = address;
+    }
+
+    public Person(String name, Address address){
+        this.name = name;
+        this.address = address;
+    }
+
+    public Person(long id, String name, String username, String email,
+                  Address address, String phone, String website, Company company) {
         this.id = id;
         this.name = name;
         this.username = username;
@@ -24,51 +32,59 @@ public class Person {
         this.company = company;
     }
 
-    public Object getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Object id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Object getUsername() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUsername(Object username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(Object email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public Object getPhone() {
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String  getPhone() {
         return phone;
     }
 
-    public void setPhone(Object phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public Object getWebsite() {
+    public String getWebsite() {
         return website;
     }
 
-    public void setWebsite(Object website) {
+    public void setWebsite(String website) {
         this.website = website;
     }
 

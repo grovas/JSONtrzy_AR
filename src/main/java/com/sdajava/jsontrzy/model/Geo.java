@@ -2,11 +2,27 @@ package com.sdajava.jsontrzy.model;
 
 public class Geo {
 
-    private Object lat;
-    private Object lng;
+    private double lat;
+    private double lng;
 
-    public Geo(Object lat, Object lng) {
+    public Geo(double lat, double lng) {
         this.lat = lat;
+        this.lng = lng;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
         this.lng = lng;
     }
 
@@ -16,19 +32,5 @@ public class Geo {
                 ", \n\t\tlng=" + lng;
     }
 
-    public Object getLat() {
-        return lat;
-    }
 
-    public void setLat(Object lat) {
-        this.lat = lat;
-    }
-
-    public Object getLng() {
-        return lng;
-    }
-
-    public void setLng(Object lng) {
-        this.lng = lng;
-    }
 }
